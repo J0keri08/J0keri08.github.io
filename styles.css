@@ -1,0 +1,79 @@
+header {
+    z-index: 2;
+    background-color: black;
+    position: sticky;
+    top: 0;
+}
+
+body {
+    background-color: rgb(16, 16, 16);
+}
+
+.bodytext {
+    background-color: rgb(16, 16, 16);
+}
+
+.navigation {
+    display: flex;
+    justify-content: right;
+    color: rgb(237, 237, 237);
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: normal;
+
+}
+
+nav {
+    margin-top: 15px;
+    margin-bottom: 15px;
+    margin-right: 5%;
+
+}
+
+.herotext {
+    display: flex;
+    justify-content: center;
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 75px;
+    margin-left: 5%;
+    margin-top: -4%;
+}
+
+.herotext1 {
+    display: flex;
+    justify-content: center;
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 25px;
+    font-weight: lighter;
+    margin-left: 5%;
+    margin-top: -45px;
+}
+
+.standartinfos {
+    margin-left: 5%;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.lost {
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    margin-top: 5%;
+}
+
+.herosection {
+    position: sticky;
+    margin-top: -200px;
+    top: 0;
+    z-index: -2;
+}
+
+#box1 {
+    border-color: aqua;
+    width: 300px;
+    height: 300px;
+    position: absolute;
+    top: 150px;
+    left: 50px;
+    background-image: linear-gradient(red, black);
+}

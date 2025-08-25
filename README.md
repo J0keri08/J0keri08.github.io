@@ -1,2 +1,2 @@
-# J0keri08.github.io
-my website
+# my-website
+simply the code for my website
