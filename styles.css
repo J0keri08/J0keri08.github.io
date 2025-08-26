@@ -7,10 +7,7 @@ header {
 
 body {
     background-color: rgb(16, 16, 16);
-}
-
-.bodytext {
-    background-color: rgb(16, 16, 16);
+    margin: 0px;
 }
 
 .navigation {
@@ -36,7 +33,7 @@ nav {
     font-family: Arial, Helvetica, sans-serif;
     font-size: 75px;
     margin-left: 5%;
-    margin-top: -4%;
+    margin-top: -7%;
 }
 
 .herotext1 {
@@ -52,6 +49,7 @@ nav {
 
 .standartinfos {
     margin-left: 5%;
+    margin-bottom: 5%;
     font-family: Arial, Helvetica, sans-serif;
 }
 
@@ -61,19 +59,32 @@ nav {
     margin-top: 5%;
 }
 
-.herosection {
-    position: sticky;
-    margin-top: -200px;
-    top: 0;
-    z-index: -2;
+.footer {
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: black;
+    position: relative;
+    margin-bottom: 0px;
 }
 
-#box1 {
-    border-color: aqua;
-    width: 300px;
-    height: 300px;
-    position: absolute;
-    top: 150px;
-    left: 50px;
-    background-image: linear-gradient(red, black);
+.heading-footer {
+    margin-left: 5%;
+    display: flex;
+    margin-right: 2%;
+    margin-bottom: -2%;
+}
+
+.content-footer {
+    display: flex;
+    margin-top: 2%;
+    margin-left: 5%;
+    margin-right: 2%;
+}
+
+.margin-left {
+    margin-left: 100px;
+}
+
+.margin-left2 {
+    margin-left: 250px;
 }
