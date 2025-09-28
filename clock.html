@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Time</title>
+    <style>
+        * {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        html {
+            height: 100%;
+            background: linear-gradient(rgb(255, 100, 0), black);
+        }
+
+        #clock {
+            position: absolute;
+            margin: 0 auto;
+            top: 20%;
+            left: 0;
+            right: 0;
+            overflow: hidden;
+            font-size: 200px;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="clock"></div>
+
+    <div id="date"></div>
+
+    <script>
+        var clockElement = document.getElementById("clock");
+
+        function updateClock() {
+            const date = new Date();
+            var h = date.getHours();
+            var m = date.getMinutes();
+            var s = date.getSeconds();
+            h = h < 10 ? "0" + h : h;
+            m = m < 10 ? "0" + m : m;
+            s = s < 10 ? "0" + s : s;
+            clockElement.innerText = h + ":" + m + ":" + s;
+        }
+
+        setInterval(updateClock, 1000);
+
+    </script>
+</body>
+
+</html>
