@@ -8,10 +8,13 @@ body {
 }
 
 header {
-    z-index: 2;
-    position: sticky;
+    position: fixed;
     top: 0;
+    left: 0;
+    right: 0;
     background-color: black;
+    box-shadow: 0 4px 16px -4px rgba(0, 0, 0, 0.3);
+    z-index: 100;
 }
 
 .header-logo {

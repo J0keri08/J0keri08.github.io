@@ -19,13 +19,19 @@ body {
     margin-top: 50px;
 }
 
+.margin-top {
+    margin-top: 100px;
+}
+
 .hidden {
     display: none !important;
 }
 
 .btn {
     width: 100px;
-    height: 56px;
+    max-height: 56px;
+    min-width: 75px;
+    min-height: 56px;
     font-family: A;
     font-size: 25px;
     border: none;
@@ -103,4 +109,48 @@ body {
 
 .display {
     background-color: rgb(15, 5, 0);
+}
+
+@media (max-width: 800px) {
+    /* Rahmen */
+    .rahmen {
+        width: 100%;
+        max-width: none;
+        margin-top: 0;
+        padding: 10px;
+        border-radius: 0;
+    }
+
+    /* Zentrierung anpassen, damit 100% wirkt */
+    .center-content {
+        justify-content: center;
+    }
+
+    /* Zeilenlayout umbrechen */
+    .row-columns {
+        flex-wrap: wrap;
+        justify-content: center;
+        width: 100%;
+    }
+
+    /* Spalten sollen gleichmäßig nebeneinander stehen */
+    .create-columns {
+        width: 20%; /* 5 Spalten = 100% (je nach Layout kannst du hier feintunen) */
+        min-width: 60px;
+    }
+
+    /* Buttons füllen Spalten komplett aus */
+    .btn {
+        width: 98.5%;
+        box-sizing: border-box;
+    }
+
+    /* Display-Bereiche (oben) anpassen */
+    .input-indication,
+    .aufgabe-indication {
+        width: 100%;
+        min-width: unset;
+        box-sizing: border-box;
+        font-size: 28px;
+    }
 }
