@@ -111,7 +111,7 @@ body {
     background-color: rgb(15, 5, 0);
 }
 
-@media (max-width: 800px) {
+@media (max-width: 720px) {
     /* Rahmen */
     .rahmen {
         width: 100%;
