@@ -3,5 +3,5 @@
       const text = await res.text();
       document.getElementById(id).innerHTML = text;
     }
-    loadHTML("header", "header.html");
-    loadHTML("footer", "footer.html");
+    loadHTML("header", "/pages/includes/header.html");
+    loadHTML("footer", "/pages/includes/footer.html");
