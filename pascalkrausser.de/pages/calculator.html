@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="calculator.css" rel="stylesheet">
+    <link href="styles.css" rel="stylesheet">
+    <script src="/pages/includes/includes.js"></script>
+    <script src="calculator.js" defer></script>
+    <link rel="icon" href="/favicon.svg">
+    <title>Pascalculator - Pascal Krausser</title>
+</head>
+<body>
+
+    <div id="header"></div>
+
+    <div class="center-content">
+
+        <div class="rahmen">
+            <div class="specification">Pascalculator 2.0</div>
+            <div class="center-content">
+                <p class="border-radius display aufgabe-indication" id="aufgabe-indication"></p>
+            </div>
+            <div class="center-content">
+                <p class="border-radius display input-indication" id="input-indication"></p>
+            </div>
+            <div class="center-content">
+                <div class="row-columns">
+                    <div class="create-columns" id="secondContainer">
+                        <button class="btn border-radius darkgrey-color" data-value="">2ⁿᵈ</button>
+                        <button class="btn border-radius darkgrey-color" data-value="">x²</button>
+                        <button class="btn border-radius darkgrey-color" data-value="">²√x</button>
+                        <button class="btn border-radius darkgrey-color" data-value="">xʸ</button>
+                        <button class="btn border-radius darkgrey-color" data-value="">10ˣ</button>
+                        <button class="btn border-radius darkgrey-color" data-value="">log</button>
+                        <button class="btn border-radius darkgrey-color" data-value="">ln</button>
+                    </div>
+                    <div class="create-columns hidden" id="thirdContainer">
+                        <button class="btn border-radius orange-color" data-value="">2ⁿᵈ</button>
+                        <button class="btn border-radius darkgrey-color" data-value="">x³</button>
+                        <button class="btn border-radius darkgrey-color" data-value="">³√x</button>
+                        <button class="btn border-radius blue-color" data-value="">ʸ√x</button>
+                        <button class="btn border-radius darkgrey-color" data-value="">2ˣ</button>
+                        <button class="btn border-radius blue-color" data-value="">logᵧx</button>
+                        <button class="btn border-radius darkgrey-color" data-value="">eˣ</button>
+                    </div>
+                    <div class="create-columns">
+                        <button class="btn border-radius darkgrey-color" data-value="3.1415926535">π</button>
+                        <button class="btn border-radius darkgrey-color" data-value="">¹/ₓ</button>
+                        <button class="btn border-radius darkgrey-color" data-value="(">(</button>
+                        <button class="btn border-radius grey-color" data-value="7">7</button>
+                        <button class="btn border-radius grey-color" data-value="4">4</button>
+                        <button class="btn border-radius grey-color" data-value="1">1</button>
+                        <button class="btn border-radius grey-color" data-value="">+/–</button>
+                    </div>
+                    <div class="create-columns">
+                        <button class="btn border-radius darkgrey-color" data-value="2.7182818284">e</button>
+                        <button class="btn border-radius darkgrey-color" data-value="">|x|</button>
+                        <button class="btn border-radius darkgrey-color" data-value=")">)</button>
+                        <button class="btn border-radius grey-color" data-value="8">8</button>
+                        <button class="btn border-radius grey-color" data-value="5">5</button>
+                        <button class="btn border-radius grey-color" data-value="2">2</button>
+                        <button class="btn border-radius grey-color" data-value="0">0</button> 
+                    </div>
+                    <div class="create-columns">
+                        <button class="btn border-radius darkgrey-color" data-value="">C</button>
+                        <button class="btn border-radius darkgrey-color" data-value="">exp</button>
+                        <button class="btn border-radius darkgrey-color" data-value="">n!</button>
+                        <button class="btn border-radius grey-color" data-value="9">9</button>
+                        <button class="btn border-radius grey-color" data-value="6">6</button>
+                        <button class="btn border-radius grey-color" data-value="3">3</button>
+                        <button class="btn border-radius grey-color" data-value=".">.</button>
+                    </div>
+                    <div class="create-columns">
+                        <button class="btn border-radius darkgrey-color" data-value="">⌫</button>
+                        <button class="btn border-radius darkgrey-color" data-value="">mod</button>
+                        <button class="btn border-radius darkgrey-color" data-value="/">÷</button>
+                        <button class="btn border-radius darkgrey-color" data-value="*">×</button>
+                        <button class="btn border-radius darkgrey-color" data-value="-">–</button>
+                        <button class="btn border-radius darkgrey-color" data-value="+">+</button>
+                        <button class="btn border-radius orange-color" data-value="">=</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+        <p class="center-content" style="padding: 30px; font-weight: bolder; font-family: Arial, Helvetica, sans-serif; color: rgb(0, 47, 135);">The blue buttons are NOT working yet. I'll make them usable as fast as possible</p>
+    
+        <div id="footer"></div>
+    
+    </body>
+    </html>
