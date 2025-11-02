@@ -124,6 +124,7 @@ body {
     /* Zentrierung anpassen, damit 100% wirkt */
     .center-content {
         justify-content: center;
+        width: 100%;
     }
 
     /* Zeilenlayout umbrechen */
