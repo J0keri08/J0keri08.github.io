@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="calculator.css" rel="stylesheet">
+    <link href="styles.css" rel="stylesheet">
+    <script src="/pages/includes/includes.js"></script>
+
+        <link rel="icon" type="image/svg+xml" sizes="794x794" href="assets/img/favicon.svg">
+    <link rel="icon" type="image/svg+xml" sizes="794x794" href="assets/img/favicon.svg" media="(prefers-color-scheme: dark)">
+    <link rel="icon" type="image/svg+xml" sizes="794x794" href="assets/img/favicon.svg">
+    <link rel="icon" type="image/svg+xml" sizes="794x794" href="assets/img/favicon.svg" media="(prefers-color-scheme: dark)">
+    <link rel="icon" type="image/svg+xml" sizes="794x794" href="assets/img/favicon.svg">
+    <link rel="icon" type="image/svg+xml" sizes="794x794" href="assets/img/favicon.svg">
+    <link rel="icon" type="image/svg+xml" sizes="794x794" href="assets/img/favicon.svg">
+    <title>Pascalculator - Pascal Krausser</title>
+    <style>
+        body {
+    background-color: rgb(16, 16, 16);
+    margin: 0px;
+}
+
+.specification {
+    color: rgb(250, 100, 0);
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    font-size: 30px;
+    margin-bottom: 15px;
+}
+
+.rahmen {
+    background-color: rgb(0, 0, 0);
+    max-width: 510px;
+    padding: 20px;
+    border-radius: 10px;
+    margin-top: 50px;
+}
+
+.margin-top {
+    margin-top: 100px;
+}
+
+.hidden {
+    display: none !important;
+}
+
+.btn {
+    width: 100px;
+    max-height: 56px;
+    min-width: 75px;
+    min-height: 56px;
+    font-family: A;
+    font-size: 25px;
+    border: none;
+    font-weight: lighter;
+    color: rgb(255, 255, 255);
+    margin: 1px;
+}
+
+.blue-color {
+    background-color: rgb(0, 47, 135);
+}
+
+.orange-color {
+    background-color: rgb(200, 130, 80);
+}
+
+.grey-color {
+    background-color: rgb(50, 50, 50);  
+}
+
+.darkgrey-color {
+    background-color: rgb(40, 40, 40);  
+}
+
+.grey-color:hover {
+    background-color: rgb(40, 40, 40);  
+}
+
+.darkgrey-color:hover {
+    background-color: rgb(50, 50, 50);  
+}
+
+.border-radius {
+    border-radius: 4px;
+}
+
+.create-columns {
+    display: flex;
+    flex-direction: column;
+}
+
+.row-columns {
+    display: flex;
+    flex-direction: row;
+}
+
+.center-content {
+    display: flex;
+    justify-content: center;
+}
+
+.input-indication {
+    display: flex;
+    margin-top: -10px;
+    margin-bottom: 10px;
+    padding: 10px;
+    color: white;
+    font-family: A;
+    font-size: 40px;
+    height: 50px;
+    min-width: 487px;
+
+}
+
+.aufgabe-indication {
+    margin-top: 2px;
+    margin-bottom: 0px;
+    padding: 10px;
+    color: rgb(80, 80, 80);
+    font-family: A;
+    font-size: 25px;
+    height: 30px;
+    min-width: 487px;
+}
+
+.display {
+    background-color: rgb(15, 5, 0);
+}
+
+@media (max-width: 768px) {
+    /* Rahmen */
+    .rahmen {
+        width: 100%;
+        max-width: none;
+        margin-top: 0;
+        padding: 10px;
+        border-radius: 0;
+    }
+
+    /* Zentrierung anpassen, damit 100% wirkt */
+    .center-content {
+        justify-content: center;
+        width: 100%;
+    }
+
+    /* Zeilenlayout umbrechen */
+    .row-columns {
+        flex-wrap: wrap;
+        justify-content: center;
+        width: 100%;
+    }
+
+    /* Spalten sollen gleichmäßig nebeneinander stehen */
+    .create-columns {
+        width: 20%; /* 5 Spalten = 100% (je nach Layout kannst du hier feintunen) */
+        min-width: 60px;
+    }
+
+    /* Buttons füllen Spalten komplett aus */
+    .btn {
+        width: 98.5%;
+        box-sizing: border-box;
+    }
+
+    /* Display-Bereiche (oben) anpassen */
+    .input-indication,
+    .aufgabe-indication {
+        width: 100%;
+        min-width: unset;
+        box-sizing: border-box;
+        font-size: 28px;
+    }
+}
+
+    </style>
+</head>
+<body>
+
+    <div id="header"></div>
+
+    <div class="center-content margin-top">
+
+        <div class="rahmen">
+            <div class="specification">Pascalculator 2.0</div>
+            <div class="center-content">
+                <p class="border-radius display aufgabe-indication" id="aufgabe-indication"></p>
+            </div>
+            <div class="center-content">
+                <p class="border-radius display input-indication" id="input-indication"></p>
+            </div>
+            <div class="center-content">
+                <div class="row-columns column">
+                    <div class="create-columns" id="secondContainer">
+                        <button class="btn border-radius darkgrey-color" data-value="">2ⁿᵈ</button>
+                        <button class="btn border-radius darkgrey-color" data-value="">x²</button>
+                        <button class="btn border-radius darkgrey-color" data-value="">²√x</button>
+                        <button class="btn border-radius darkgrey-color" data-value="">xʸ</button>
+                        <button class="btn border-radius darkgrey-color" data-value="">10ˣ</button>
+                        <button class="btn border-radius darkgrey-color" data-value="">log</button>
+                        <button class="btn border-radius darkgrey-color" data-value="">ln</button>
+                    </div>
+                    <div class="create-columns hidden" id="thirdContainer">
+                        <button class="btn border-radius orange-color" data-value="">2ⁿᵈ</button>
+                        <button class="btn border-radius darkgrey-color" data-value="">x³</button>
+                        <button class="btn border-radius darkgrey-color" data-value="">³√x</button>
+                        <button class="btn border-radius blue-color" data-value="">ʸ√x</button>
+                        <button class="btn border-radius darkgrey-color" data-value="">2ˣ</button>
+                        <button class="btn border-radius blue-color" data-value="">logᵧx</button>
+                        <button class="btn border-radius darkgrey-color" data-value="">eˣ</button>
+                    </div>
+                    <div class="create-columns">
+                        <button class="btn border-radius darkgrey-color" data-value="3.1415926535">π</button>
+                        <button class="btn border-radius darkgrey-color" data-value="">¹/ₓ</button>
+                        <button class="btn border-radius darkgrey-color" data-value="(">(</button>
+                        <button class="btn border-radius grey-color" data-value="7">7</button>
+                        <button class="btn border-radius grey-color" data-value="4">4</button>
+                        <button class="btn border-radius grey-color" data-value="1">1</button>
+                        <button class="btn border-radius grey-color" data-value="">+/–</button>
+                    </div>
+                    <div class="create-columns">
+                        <button class="btn border-radius darkgrey-color" data-value="2.7182818284">e</button>
+                        <button class="btn border-radius darkgrey-color" data-value="">|x|</button>
+                        <button class="btn border-radius darkgrey-color" data-value=")">)</button>
+                        <button class="btn border-radius grey-color" data-value="8">8</button>
+                        <button class="btn border-radius grey-color" data-value="5">5</button>
+                        <button class="btn border-radius grey-color" data-value="2">2</button>
+                        <button class="btn border-radius grey-color" data-value="0">0</button> 
+                    </div>
+                    <div class="create-columns">
+                        <button class="btn border-radius darkgrey-color" data-value="">C</button>
+                        <button class="btn border-radius darkgrey-color" data-value="">exp</button>
+                        <button class="btn border-radius darkgrey-color" data-value="">n!</button>
+                        <button class="btn border-radius grey-color" data-value="9">9</button>
+                        <button class="btn border-radius grey-color" data-value="6">6</button>
+                        <button class="btn border-radius grey-color" data-value="3">3</button>
+                        <button class="btn border-radius grey-color" data-value=".">.</button>
+                    </div>
+                    <div class="create-columns">
+                        <button class="btn border-radius darkgrey-color" data-value="">⌫</button>
+                        <button class="btn border-radius darkgrey-color" data-value="">mod</button>
+                        <button class="btn border-radius darkgrey-color" data-value="/">÷</button>
+                        <button class="btn border-radius darkgrey-color" data-value="*">×</button>
+                        <button class="btn border-radius darkgrey-color" data-value="-">–</button>
+                        <button class="btn border-radius darkgrey-color" data-value="+">+</button>
+                        <button class="btn border-radius orange-color" data-value="">=</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+        <p class="center-content" style="padding: 30px; font-weight: bolder; font-family: Arial, Helvetica, sans-serif; color: rgb(0, 47, 135);">The blue buttons are NOT working yet. I'll make them usable as fast as possible</p>
+    
+<script>
+const buttons = document.querySelectorAll(".btn")
+let toCalculate = ""
+let input = ""
+let aufgabe = ""
+let ablage = ""
+
+function calculate() {
+    aufgabe = ablage + input + "="
+    try {
+        input = eval(toCalculate);
+    } catch {
+        input = "Error"
+    }
+    toCalculate.slice(0, 12)
+    toCalculate = input
+    ablage = ""
+}
+
+function calculateMod() {
+    aufgabe = ablage + "mod" + input + "="
+    toCalculate = ablage % input
+    try {
+        input = eval(toCalculate);
+    } catch {
+        input = "Error"
+    }
+    toCalculate = input
+    ablage = ""
+}
+
+function factorial(n) {
+  if (n < 0) return undefined;
+  if (n === 0) return 1;
+  return Array.from({ length: n }, (_, i) => i + 1)
+              .reduce((a, b) => a * b, 1);
+}
+
+function showAndHideContainer() {
+    const second = document.getElementById("secondContainer");
+    const third = document.getElementById("thirdContainer");
+
+      if (!second.classList.contains("hidden")) {
+        second.classList.add("hidden");
+        third.classList.remove("hidden");
+      } 
+      else {
+        third.classList.add("hidden");
+        second.classList.remove("hidden");
+      }
+}
+
+buttons.forEach(button => {
+    button.addEventListener("click", () => {
+        if (button.dataset.value !=  "") {
+            input += button.textContent;
+            toCalculate += button.dataset.value;
+        } 
+        else if (button.textContent == "=") {
+            if (aufgabe.includes("mod")) {
+                calculateMod()
+            } else {
+                calculate()
+            }
+        }
+        else if (button.textContent == "⌫") {
+            try {
+                input = input.slice(0, -1)
+                toCalculate = toCalculate.slice(0, -1)
+                aufgabe = ""
+            } catch {
+                input = input + " "
+                input = input.slice(0, -2)
+                toCalculate = toCalculate + " "
+                toCalculate = toCalculate.slice(0, -2)
+                aufgabe = ""
+            }
+        }
+        else if (button.textContent == "C") {
+            toCalculate = ""
+            input = ""
+            aufgabe = ""
+        }
+        else if (button.textContent == "+/–") {
+            calculate()
+            toCalculate = input + "*(-1)"
+            input += "×(–1)"
+            calculate()
+        }
+        else if (button.textContent == "²√x") {
+            calculate()
+            toCalculate = input + "**0.5"
+            input = "√(" + input + ")"
+            calculate()
+        }
+        else if (button.textContent == "x²") {
+            calculate()
+            toCalculate = input + "**2"
+            input += "²"
+            calculate()
+        }
+        else if (button.textContent == "¹/ₓ") {
+            calculate()
+            toCalculate = "1/(" + input + ")"
+            input = "1/(" + input + ")"
+            calculate()
+        }
+        else if (button.textContent == "xʸ") {
+            calculate()
+            toCalculate = input + "**"
+            input += "^"
+            aufgabe = input
+            ablage = input
+            input = ""
+        }
+        else if (button.textContent == "10ˣ") {
+            calculate()
+            toCalculate = "10**" + input
+            input = "10^" + input
+            calculate()
+        }
+        else if (button.textContent == "2ⁿᵈ") {
+            showAndHideContainer()
+        }
+        else if (button.textContent == "x³") {
+            calculate()
+            toCalculate = input + "**3"
+            input += "³"
+            calculate()
+        }
+        else if (button.textContent == "³√x") {
+            calculate()
+            toCalculate = input + "**(1/3)"
+            input = "³√(" + input + ")"
+            calculate()
+        }
+        else if (button.textContent == "2ˣ") {
+            calculate()
+            toCalculate = "2**" + input
+            input = "2^" + input
+            calculate()
+        }
+        else if (button.textContent == "eˣ") {
+            calculate()
+            toCalculate = "2.7182818284**" + input
+            input = "e^" + input
+            calculate()
+        }
+        else if (button.textContent == "exp") {
+            calculate()
+            toCalculate = input + "*10**"
+            input = input + "×10^"
+            aufgabe = input
+            ablage = input
+            input = ""
+        }
+        else if (button.textContent == "mod") {
+            calculate()
+            ablage = input
+            aufgabe = input + " mod "
+            input = ""
+        }
+        else if (button.textContent == "|x|") {
+            calculate()
+            if (input > 0) {
+                aufgabe = "abs(" + input + ")="
+                input = toCalculate
+            } else {
+                toCalculate = "(-1)*" + input
+                aufgabe = "abs(" + input + ")"
+                input = aufgabe
+                calculate()
+            }
+        }
+        else if (button.textContent == "n!") {
+            calculate()
+            aufgabe = "fact(" + input + ")="
+            input = factorial(Number(input));
+        }
+        else if (button.textContent == "log") {
+            calculate();
+            ablage = "log(" + input + ")";
+            toCalculate = "Math.log10(" + input + ")";
+            input = ""
+            calculate();
+        }
+        else if (button.textContent == "ln") {
+            calculate()
+            if (input = 2.7182818284) {
+                aufgabe = "ln(" + input + ")";
+                input = 1
+            } else {
+                ablage = "ln(" + input + ")";
+                toCalculate = "Math.log(" + input + ")";
+                input = ""
+                calculate();
+            }
+        }
+
+        document.getElementById("aufgabe-indication").textContent = aufgabe;
+        document.getElementById("input-indication").textContent = input;
+    });
+});
+</script>
+    </body>
+    </html>
