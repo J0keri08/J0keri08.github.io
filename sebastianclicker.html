@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sebastian Clicker</title>
+
+    <style>
+        body {
+            background-color: rgb(17, 17, 17);
+            background-color: rgb(17, 17, 17);
+            font-family: Arial, Helvetica, sans-serif;
+            color: rgb(250, 100, 0);
+            margin: 0;
+            padding: 0;
+        }
+
+        /* ===== Layout ===== */
+        .row {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .column {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .gap {
+            gap: 12px;
+        }
+
+        h1, h3 {
+            text-align: center;
+        }
+
+        /* ===== Sebastian ===== */
+        .sebastian {
+            background: url(sebastian.png);
+            background-size: cover;
+            background-position: center;
+            border: none;
+            border-radius: 10px;
+            width: 90vw;
+            height: 600px;
+            cursor: pointer;
+        }
+
+        button {
+            background-color: rgba(250, 100, 0, 0.15);
+            color: white;
+            border: 1px solid rgb(250, 100, 0);
+            border-radius: 10px;
+            padding: 15px;
+            cursor: pointer;
+        }
+
+        /* ===== STATS ===== */
+        .main-stat {
+            background-color: rgba(250, 100, 0, 0.12);
+            border: 1px solid rgba(250, 100, 0, 0.5);
+            border-radius: 14px;
+            padding: 15px;
+            text-align: center;
+        }
+
+        .main-stat-value {
+            font-size: 2.4rem;
+            font-weight: 500;
+            color: rgb(250, 100, 0);
+        }
+
+        .main-stat-label {
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 12px;
+        }
+
+        .stat-card {
+            background-color: rgba(17, 17, 17, 0.8);
+            border: 1px solid rgba(250, 100, 0, 0.4);
+            border-radius: 10px;
+            padding: 10px 12px;
+        }
+
+        .stat-label {
+            font-size: 0.75rem;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .stat-value {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: rgb(250, 100, 0);
+            margin-top: 2px;
+        }
+
+        .upgrade-buttons {
+            position: relative;
+            background-color: rgba(154, 86, 41, 0.064);
+            width: 90vw;
+            min-height: 90px;
+            padding: 16px 20px;
+            text-align: left;
+            transition: background-color 0.2s ease;
+        }
+
+        .upgrade-buttons:hover {
+            background-color: rgba(154, 86, 41, 0.18);
+        }
+
+        .upgrade-name {
+            font-size: 1rem;
+            font-weight: 600;
+            color: white;
+        }
+
+        .upgrade-price {
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.6);
+            margin-top: 4px;
+        }
+
+        .upgrade-level {
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 2rem;
+            font-weight: 700;
+            color: rgb(250, 100, 0);
+            transition: transform 0.2s ease;
+        }
+
+        .upgrade-buttons:hover .upgrade-level {
+            transform: translateY(-50%) scale(1.15);
+        }
+
+        /* ===== Sebastian Bild auf Mobile ===== */
+        @media (max-width: 1023px) {
+            .sebastian {
+                height: 400px;
+                margin-bottom: 15px;
+            }
+        }
+
+        /* ===== Desktop ===== */
+        @media (min-width: 1024px) {
+
+            .row.main {
+                flex-wrap: nowrap;
+                gap: 30px;
+                align-items: flex-start;
+            }
+
+            .sebastian {
+                width: 45vw;
+                max-width: 600px;
+            }
+
+            .right-panel {
+                width: 35vw;
+                max-width: 500px;
+            }
+
+            .upgrade-buttons {
+                width: 100%;
+            }
+        }
+
+        #happiness-container {
+            width: 100%;
+            max-width: 600px; /* passt zum Desktop-Max des Bildes */
+            height: 10px;
+            border-radius: 5px;
+            margin: 10px auto;
+            background-color: rgb(70, 70, 70);
+            overflow: hidden;
+        }
+
+        #happiness-bar {
+            height: 100%;
+            width: 100%;
+            background-color: #093c00;
+            transition: width 0.3s, background-color 0.3s;
+        }
+
+        .margin-bottom {
+            margin-bottom: 40px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="row">
+        <h1>Sebastian Clicker</h1>
+    </div>
+
+    <div class="row main">
+
+        <div class="column gap">
+            <button class="sebastian" id="sebastianButton" onclick="sebastianButton()"></button>
+            <div id="happiness-container">
+                <div id="happiness-bar"></div>
+            </div>
+            <div class="row">
+                <h3 id="status">Sebastian is happy!</h3>
+            </div>
+        </div>
+
+        <div class="column gap right-panel">
+
+            <div class="main-stat">
+                <div class="main-stat-value" id="clickAd">0</div>
+                <div class="main-stat-label">Collected Points</div>
+            </div>
+
+            <div class="stats">
+                <div class="stat-card">
+                    <div class="stat-label">Stored Food (kg)</div>
+                    <div class="stat-value" id="foodAd">0</div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-label">Barks this Session</div>
+                    <div class="stat-value" id="barkedAd">0</div>
+                </div>
+            </div>
+
+            <h3>Upgrades</h3>
+
+            <div class="column gap">
+                <button class="upgrade-buttons" onclick="upgradeCursor()">
+                    <div class="upgrade-name">Cursor Click</div>
+                    <div class="upgrade-price" id="cursorUpgradeCostAd">100</div>
+                    <div class="upgrade-level" id="cursorLvl">0</div>
+                </button>
+
+                <button class="upgrade-buttons" onclick="upgradeAutoClick()">
+                    <div class="upgrade-name">Auto Click</div>
+                    <div class="upgrade-price" id="autoClickUpgradeCostAd">1500</div>
+                    <div class="upgrade-level" id="autoClickLvlAd">0</div>
+                </button>
+
+                <button class="upgrade-buttons" onclick="buyFood()">
+                    <div class="upgrade-name">Buy Food</div>
+                    <div class="upgrade-price" id="foodCostAd">3000</div>
+                </button>
+            </div>
+
+            <h3>Make Sebastian Happy</h3>
+
+            <div class="column gap margin-bottom">
+                <button onclick="petButton()">Pet Sebastian</button>
+                <button onclick="feedButton()">Feed Sebastian</button>
+            </div>
+
+        </div>
+    </div>
+    
+<script>
+/* =========================
+   STYLE INJECTION (FADE)
+========================= */
+const style = document.createElement("style");
+style.textContent = `
+.sebastian {
+    transition: background-image 0.4s ease, opacity 0.35s ease;
+}
+.sebastian.fade-out {
+    opacity: 0;
+}
+.sebastian.fade-in {
+    opacity: 1;
+}
+`;
+document.head.appendChild(style);
+
+/* =========================
+   GAME STATE
+========================= */
+let collectedPoints = 0;
+let storedFood = 0;
+let foodCost = 50;
+
+let barked = 0;
+
+let pointsPerClick = 1;
+let pointsPerSecond = 0;
+
+let happiness = 100;
+const maxHappiness = 100;
+
+let cursorClickLvl = 0;
+let cursorUpgradeCost = 15;
+
+let autoClickLvl = 0;
+let autoClickUpgradeCost = 120;
+
+let sebastianAwake = true;
+let sebastianAngry = false;
+
+const bark = new Audio("bark.mp3");
+
+/* =========================
+   DOM
+========================= */
+const sebastianBtn = document.querySelector(".sebastian");
+
+const clickAd = document.getElementById("clickAd");
+const cursorLvlAd = document.getElementById("cursorLvl");
+const cursorUpgradeCostAd = document.getElementById("cursorUpgradeCostAd");
+const storedFoodAd = document.getElementById("foodAd");
+const autoClickLvlAd = document.getElementById("autoClickLvlAd");
+const autoClickUpgradeCostAd = document.getElementById("autoClickUpgradeCostAd");
+const barkedAd = document.getElementById("barkedAd");
+const foodCostAd = document.getElementById("foodCostAd");
+const happinessBar = document.getElementById("happiness-bar");
+const status = document.getElementById("status");
+
+/* =========================
+   CLICK
+========================= */
+sebastianBtn.addEventListener("click", () => {
+    collectedPoints += pointsPerClick;
+    updateView();
+});
+
+/* =========================
+   INTERACTION
+========================= */
+function petButton() {
+    if (!sebastianAwake) return;
+
+    if (Math.random() < 0.07) {
+        bark.play();
+        happiness -= 25;
+        barked++;
+    } else {
+        happiness += 2;
+    }
+
+    happiness = Math.min(happiness, maxHappiness);
+    updateView();
+}
+
+function feedButton() {
+    if (sebastianAwake && storedFood > 0) {
+        storedFood--;
+
+        if (Math.random() < 0.25) {
+            sebastianAwake = false;
+            setTimeout(() => sebastianAwake = true, 40000);
+        } else {
+            happiness += 15;
+        }
+    }
+
+    happiness = Math.min(happiness, maxHappiness);
+    updateView();
+}
+
+/* =========================
+   UPGRADES (BALANCED)
+========================= */
+function upgradeCursor() {
+    if (collectedPoints >= cursorUpgradeCost) {
+        collectedPoints -= cursorUpgradeCost;
+        cursorClickLvl++;
+
+        pointsPerClick += 1 + Math.floor(cursorClickLvl * 0.3);
+        cursorUpgradeCost = Math.floor(cursorUpgradeCost * 1.35);
+
+        updateView();
+    }
+}
+
+function upgradeAutoClick() {
+    if (collectedPoints >= autoClickUpgradeCost) {
+        collectedPoints -= autoClickUpgradeCost;
+        autoClickLvl++;
+
+        pointsPerSecond += 1 + Math.floor(autoClickLvl * 0.4);
+        autoClickUpgradeCost = Math.floor(autoClickUpgradeCost * 1.45);
+
+        updateView();
+    }
+}
+
+function buyFood() {
+    if (collectedPoints >= foodCost) {
+        collectedPoints -= foodCost;
+        storedFood++;
+        foodCost = Math.floor(foodCost * 1.25);
+        updateView();
+    }
+}
+
+/* =========================
+   GAME LOGIC
+========================= */
+function addAutoPoints() {
+    collectedPoints += pointsPerSecond;
+}
+
+function updateHappiness() {
+    if (!sebastianAwake) {
+        happiness += 0.6;
+    } else if (happiness > 35) {
+        happiness -= 0.8;
+        sebastianAngry = false;
+    } else {
+        happiness -= 1.3;
+        sebastianAngry = true;
+    }
+
+    if (happiness <= 0) resetGame();
+}
+
+/* =========================
+   IMAGE FADE SWITCH
+========================= */
+let currentImage = "sebastian.png";
+
+function setSebastianImage(src) {
+    if (currentImage === src) return;
+    currentImage = src;
+
+    sebastianBtn.classList.add("fade-out");
+
+    setTimeout(() => {
+        sebastianBtn.style.backgroundImage = `url('${src}')`;
+        sebastianBtn.classList.remove("fade-out");
+        sebastianBtn.classList.add("fade-in");
+    }, 200);
+
+    setTimeout(() => {
+        sebastianBtn.classList.remove("fade-in");
+    }, 450);
+}
+
+function checkSebastianCondition() {
+    if (!sebastianAwake) {
+        setSebastianImage("sebastiansleeping.jpeg");
+    } else if (sebastianAngry) {
+        setSebastianImage("sebastianangry.jpg");
+    } else {
+        setSebastianImage("sebastian.png");
+    }
+}
+
+/* =========================
+   RESET
+========================= */
+function resetGame() {
+    collectedPoints = 0;
+    storedFood = 0;
+    foodCost = 50;
+
+    barked = 0;
+
+    pointsPerClick = 1;
+    pointsPerSecond = 0;
+
+    happiness = 100;
+
+    cursorClickLvl = 0;
+    cursorUpgradeCost = 15;
+
+    autoClickLvl = 0;
+    autoClickUpgradeCost = 120;
+
+    sebastianAwake = true;
+    sebastianAngry = false;
+
+    updateView();
+}
+
+/* =========================
+   SAVE / LOAD
+========================= */
+function saveGame() {
+    localStorage.setItem("sebastianSave", JSON.stringify({
+        collectedPoints,
+        storedFood,
+        foodCost,
+        barked,
+        pointsPerClick,
+        pointsPerSecond,
+        cursorClickLvl,
+        cursorUpgradeCost,
+        autoClickLvl,
+        autoClickUpgradeCost,
+        sebastianAwake,
+        happiness
+    }));
+}
+
+window.onload = () => {
+    const saved = localStorage.getItem("sebastianSave");
+    if (!saved) return;
+
+    const data = JSON.parse(saved);
+
+    collectedPoints = data.collectedPoints ?? collectedPoints;
+    storedFood = data.storedFood ?? storedFood;
+    foodCost = data.foodCost ?? foodCost;
+    barked = data.barked ?? barked;
+
+    pointsPerClick = data.pointsPerClick ?? pointsPerClick;
+    pointsPerSecond = data.pointsPerSecond ?? pointsPerSecond;
+
+    cursorClickLvl = data.cursorClickLvl ?? cursorClickLvl;
+    cursorUpgradeCost = data.cursorUpgradeCost ?? cursorUpgradeCost;
+
+    autoClickLvl = data.autoClickLvl ?? autoClickLvl;
+    autoClickUpgradeCost = data.autoClickUpgradeCost ?? autoClickUpgradeCost;
+
+    sebastianAwake = data.sebastianAwake ?? sebastianAwake;
+    happiness = data.happiness ?? happiness;
+
+    updateView();
+    checkSebastianCondition();
+};
+
+/* =========================
+   UI
+========================= */
+function updateView() {
+    happinessBar.style.width = `${happiness}%`;
+    happinessBar.style.backgroundColor = happiness <= 30 ? "#a40b00" : "#093c00";
+    status.textContent = happiness <= 30 ? "Sebastian is grumpy!" : "Sebastian is happy!";
+
+    clickAd.textContent = Math.floor(collectedPoints);
+    cursorLvlAd.textContent = cursorClickLvl;
+    cursorUpgradeCostAd.textContent = cursorUpgradeCost;
+    storedFoodAd.textContent = storedFood;
+    autoClickLvlAd.textContent = autoClickLvl;
+    autoClickUpgradeCostAd.textContent = autoClickUpgradeCost;
+    barkedAd.textContent = barked;
+    foodCostAd.textContent = foodCost;
+}
+
+/* =========================
+   LOOPS
+========================= */
+setInterval(() => {
+    addAutoPoints();
+    updateHappiness();
+}, 1000);
+
+setInterval(() => {
+    checkSebastianCondition();
+    saveGame();
+    updateView();
+}, 150);
+</script>
+
+</body>
+
+</html>
